@@ -1,20 +1,23 @@
 #include<iostream>
 using namespace std;
-long fibanocci(int n){
+int fibanocci(int n,int dp[]){
     
-    if(n==0)
-    return 0;
-    else if (n==1)
-    return 1;
+    if(n<=1)
+    return dp[n];
+    else if (dp[n]!=0)
+    return dp[n];
     
-    return fibanocci(n-1)+fibanocci(n-2);
-    
+    dp[n]= fibanocci(n-1,dp)+fibanocci(n-2,dp);
+    return dp[n];
 }
 
 int main()
 {
     int a;
     cin>>a;
-    cout<<fibanocci(a);
+    int dp[a+1]={0};
+    dp[0]=0;
+    dp[1]=1;
+    cout<<fibanocci(a,dp);
     
 }
